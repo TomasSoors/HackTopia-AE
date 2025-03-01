@@ -21,7 +21,7 @@ const Header = () => {
               <button
                 key={item.path}
                 onClick={() => router.push(item.path)}
-                className={`px-6 py-3 font-semibold rounded-lg transition-all duration-300 shadow-md
+                className={`px-6 py-3 font-semibold rounded-lg transition-all duration-300 shadow-md cursor-pointer
                   ${
                     pathname === item.path
                       ? "bg-[#FF4B28] text-white"
