@@ -16,8 +16,6 @@ CREATE TABLE `Person` (
     `height` DOUBLE NOT NULL,
     `gender` VARCHAR(191) NOT NULL,
     `isMedicalPractitioner` BOOLEAN NOT NULL,
-    `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
-    `updatedAt` DATETIME(3) NOT NULL,
 
     UNIQUE INDEX `Person_username_key`(`username`),
     PRIMARY KEY (`id`)
@@ -33,8 +31,6 @@ CREATE TABLE `Disease` (
     `isAcute` BOOLEAN NOT NULL,
     `duration` INTEGER NOT NULL,
     `incubationPeriod` INTEGER NOT NULL,
-    `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
-    `updatedAt` DATETIME(3) NOT NULL,
 
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
