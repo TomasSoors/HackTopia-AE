@@ -1,4 +1,5 @@
 import HomePage from "../pages/LoginPage"
+import PatientView from "../pages/PatientPage";
 import Header from "../components/Header";
 
 export default function Home() {

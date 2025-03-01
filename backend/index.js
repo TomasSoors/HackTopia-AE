@@ -11,6 +11,8 @@ app.use(express.json());
 
 app.use('/person', require('./routes/personRoutes'));
 app.use('/disease', require('./routes/diseaseRoutes'));
+app.use("/consultations", require("./routes/consultationRoutes"));
+
 
 app.get('/', (req, res) => {
     res.send('Backend is running!');

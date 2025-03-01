@@ -26,6 +26,8 @@ model Person {
   isMedicalPractitioner Boolean
 
   diseases            PersonDisease[] // Relatie via tussenmodel
+  doctorConsultations   Consultation[] @relation("DoctorConsultations")
+  patientConsultations  Consultation[] @relation("PatientConsultations")
 }
 
 model Disease {
@@ -40,6 +42,19 @@ model Disease {
 
   persons            PersonDisease[] // Relatie via tussenmodel
 }
+
+model Consultation {
+  id          String   @id @default(uuid())
+  date        DateTime @default(now())
+  diagnosis   String
+  doctorId    String
+  patientId   String
+
+  doctor      Person   @relation("DoctorConsultations", fields: [doctorId], references: [id])
+  patient     Person   @relation("PatientConsultations", fields: [patientId], references: [id])
+}
+
+
 
 // **Tussenmodel voor many-to-many relatie**
 model PersonDisease {
