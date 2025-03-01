@@ -9,6 +9,9 @@ export default function HomePage() {
     const [password, setPassword] = useState("");
     const router = useRouter();
 
+    window.onload = function() {
+        sessionStorage.setItem("userId", null)
+    }
     useEffect(() => {
         const userId = sessionStorage.getItem("userId");
         if (userId) {

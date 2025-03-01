@@ -12,6 +12,7 @@ app.use(express.json());
 app.use('/person', require('./routes/personRoutes'));
 app.use('/disease', require('./routes/diseaseRoutes'));
 app.use("/consultations", require("./routes/consultationRoutes"));
+app.use("/appointments", require("./routes/appointmentRoutes"));
 
 
 app.get('/', (req, res) => {

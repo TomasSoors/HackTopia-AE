@@ -28,6 +28,11 @@ model Person {
   diseases            PersonDisease[] // Relatie via tussenmodel
   doctorConsultations   Consultation[] @relation("DoctorConsultations")
   patientConsultations  Consultation[] @relation("PatientConsultations")
+    // Relatie naar afspraken als patiënt
+  patientAppointments Appointment[] @relation(name: "PatientAppointments")
+
+  // Relatie naar afspraken als dokter
+  doctorAppointments Appointment[] @relation(name: "DoctorAppointments")
 }
 
 model Disease {
@@ -41,6 +46,18 @@ model Disease {
   incubationPeriod   Int
 
   persons            PersonDisease[] // Relatie via tussenmodel
+}
+
+model Appointment {
+  id        String  @id @default(uuid())
+  dateTime  DateTime
+  reason    String
+  status    String @default("pending") // Opties: pending, confirmed, cancelled
+  patientId String
+  doctorId  String
+
+  patient Person @relation("PatientAppointments", fields: [patientId], references: [id])
+  doctor  Person @relation("DoctorAppointments", fields: [doctorId], references: [id])
 }
 
 model Consultation {

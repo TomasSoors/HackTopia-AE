@@ -2,17 +2,24 @@
 
 import { useState, useEffect } from "react";
 import Header from "../components/Header";
+import AppointmentScheduler from "../components/AppointmentScheduler";
+
 
 const doctorId = "550e8400-e29b-41d4-a716-446655440000"; // Simuleer de ingelogde dokter
 
 const PatientPage = () => {
   const [patients, setPatients] = useState([]);
   const [selectedPatient, setSelectedPatient] = useState(null);
+  const [selectedConditions, setSelectedConditions] = useState([]);
   const [diagnosis, setDiagnosis] = useState("");
   const [consultations, setConsultations] = useState([]);
+  const [conditions, setConditions] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [showModal, setShowModal] = useState(false); // Controleert of de modal open is
+  const [showConditionModal, setShowConditionModal] = useState(false);
+  const [appointments, setAppointments] = useState([]);
+  const [availableSlots, setAvailableSlots] = useState([]);
 
   // **Patiënten ophalen**
   useEffect(() => {
@@ -32,7 +39,6 @@ const PatientPage = () => {
 
     fetchPatients();
   }, []);
-
   // **Consultaties ophalen bij patiënt-selectie**
   useEffect(() => {
     if (!selectedPatient) return;
@@ -45,6 +51,29 @@ const PatientPage = () => {
     };
     fetchConsultations();
   }, [selectedPatient]);
+  useEffect(() => {
+    if (!selectedPatient) return;
+    const fetchConsultations = async () => {
+      const response = await fetch(`http://localhost:5000/appointments/patient/${selectedPatient.id}`);
+      setAppointments(await response.json());
+    };
+    fetchConsultations();
+  }, [selectedPatient]);
+  useEffect(() => {
+    const fetchConditions = async () => {
+      const response = await fetch("http://localhost:5000/disease/all");
+      const data = await response.json();
+      setConditions(data);
+    };
+    fetchConditions();
+  }, []);
+
+  useEffect(() => {
+    if (selectedPatient) {
+      setSelectedConditions(selectedPatient.diseases || []);
+    }
+  }, [selectedPatient]);
+
 
   // **Nieuwe consultatie toevoegen**
   const handleSubmit = async (e) => {
@@ -69,6 +98,30 @@ const PatientPage = () => {
       setShowModal(false); // Sluit de modal na opslaan
     }
   };
+  const toggleCondition = (condition) => {
+    setSelectedConditions((prev) =>
+      prev.includes(condition)
+        ? prev.filter((c) => c !== condition)
+        : [...prev, condition]
+    );
+  };
+  const handleSaveConditions = async () => {
+    if (!selectedPatient) return;
+
+    const diseaseIds = conditions
+      .filter(condition => selectedConditions.includes(condition.name)) // Zoek de id's op basis van de naam
+      .map(condition => condition.id);
+
+    await fetch(`http://localhost:5000/person/update-diseases/${selectedPatient.id}`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ diseases: diseaseIds }),
+    });
+
+
+    setSelectedPatient((prev) => ({ ...prev, diseases: selectedConditions }));
+    setShowConditionModal(false);
+  };
 
   // **Datum correct weergeven**
   const formatDate = (dateString) => {
@@ -79,9 +132,19 @@ const PatientPage = () => {
       year: "numeric",
     });
   };
+  const formatDate2 = (dateString) => {
+    if (!dateString) return "Unknown";
+    return new Date(dateString).toLocaleDateString("en-GB", {
+      day: "2-digit",
+      month: "long",
+      year: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+    });
+  };
 
   return (
-    <div className="min-h-screen flex flex-col bg-gray-100">
+    <div className="min-h-screen flex flex-col bg-[#0d1b2a]">
       <Header />
 
       <div className="flex flex-1 p-6 pt-20">
@@ -119,10 +182,16 @@ const PatientPage = () => {
                     <p className="text-gray-700">{selectedPatient.bloodType}</p>
                   </div>
                   <div className="bg-gray-200 p-4 rounded-lg">
-                    <h3 className="font-bold text-[#FF8C00]">Heart Rate</h3>
+                    <h3 className="font-bold text-[#FF8C00]">avg. Heart Rate</h3>
                     <p className="text-gray-700">{selectedPatient.heartRate} BPM</p>
                   </div>
-                  <div className="bg-gray-200 p-4 rounded-lg">
+                  <div className="bg-gray-200 p-4 rounded-lg relative">
+                    <button
+                      onClick={() => setShowConditionModal(true)}
+                      className="cursor-pointer absolute top-2 right-2 bg-[#FF8C00] text-white px-3 py-2 text-sm rounded-lg hover:bg-[#FF4B28] transition"
+                    >
+                      Edit
+                    </button>
                     <h3 className="font-bold text-[#FF8C00]">Medical Condition</h3>
                     <p className="text-gray-700">
                       {selectedPatient.diseases.length > 0
@@ -130,6 +199,7 @@ const PatientPage = () => {
                         : "None"}
                     </p>
                   </div>
+
                 </div>
               </>
             ) : (
@@ -137,37 +207,78 @@ const PatientPage = () => {
             )}
           </section>
           <section className="col-span-2 bg-white shadow-lg rounded-lg p-6">
-            <h2 className="text-2xl font-bold text-gray-800 mb-4">Consultation History</h2>
-            {consultations.length > 0 ? (
-              <div className="space-y-4">
-                {consultations.map((c) => (
-                  <div key={c.id} className="bg-gray-100 p-4 rounded-lg shadow-sm border-l-4 border-[#FF8C00]">
-                    <div className="flex justify-between items-center mb-2">
-                      <h3 className="text-lg font-semibold text-gray-800">{c.diagnosis}</h3>
-                      <span className="text-sm text-gray-600">{formatDate(c.date)}</span>
-                    </div>
-                    <p className="text-gray-700">
-                      Doctor: <span className="font-bold text-[#FF4B28]">
-                        {c.doctor ? `${c.doctor.firstName} ${c.doctor.lastName}` : "Unknown"}
-                      </span>
-                    </p>
-                  </div>
-                ))}
 
-              </div>
-            ) : (
-              <p className="text-gray-500">No consultations available</p>
-            )}
+            <h2 className="text-2xl font-bold text-gray-800 mb-4">Appointments and Consultations</h2>
             <button
               onClick={() => setShowModal(true)}
-              className="cursor-pointer mt-4 px-6 py-3 bg-[#FF8C00] text-white font-bold rounded-lg hover:bg-[#FF4B28] transition"
+              className="px-6 py-3 bg-[#FF8C00] text-white font-bold rounded-lg hover:bg-[#FF4B28] transition mb-4"
             >
               Add New Consultation
             </button>
+            <div className="grid grid-cols-2 gap-4">
+              {/* 🔹 Linkerzijde: Consultatiegeschiedenis */}
+              <div className="bg-gray-100 p-4 rounded-lg shadow-inner max-h-60 overflow-y-auto">
+                <h3 className="text-xl font-bold text-[#FF8C00]">Previous Consultations</h3>
+                {consultations.length > 0 ? (
+                  consultations.map((c) => (
+                    <div key={c.id} className="p-3 border-b border-gray-300 text-gray-800">
+                      <h4 className="text-lg font-semibold">{c.diagnosis}</h4>
+                      <p className="text-sm text-gray-600">{formatDate(c.date)}</p>
+                      <p className="text-sm text-gray-700">Door: {c.doctor?.firstName} {c.doctor?.lastName || "Onbekend"}</p>
+                    </div>
+                  ))
+                ) : (
+                  <p className="text-gray-500">No consultations found</p>
+                )}
+              </div>
+
+              {/* 🔹 Rechterzijde: Toekomstige afspraken */}
+              <div className="bg-gray-100 p-4 rounded-lg shadow-inner max-h-60 overflow-y-auto">
+                <h3 className="text-xl font-bold text-[#FF8C00]">Future appointments</h3>
+                {appointments.length > 0 ? (
+                  appointments.map((a) => (
+                    <div key={a.id} className="p-3 border-b border-gray-300 text-gray-800">
+                      <p className="text-lg font-semibold">{a.reason}</p>
+                      <p className="text-sm text-gray-600">{formatDate2(a.dateTime)}</p>
+                      <p className="text-sm text-gray-700">Status: {a.status}</p>
+                      <p className="text-sm font-semibold text-gray-800">
+                        Patient: {a.patient?.firstName} {a.patient?.lastName || "Onbekend"}
+                      </p>
+                    </div>
+                  ))
+                ) : (
+                  <p className="text-gray-500">No scheduled appointments</p>
+                )}
+              </div>
+
+            </div>
           </section>
+
         </main>
       </div>
       {/* Popup Modal */}
+      {showConditionModal && (
+        <div className="fixed inset-0 bg-gray-400/[.8] flex items-center justify-center">
+          <div className="bg-white p-6 rounded-lg shadow-lg w-1/3">
+            <h2 className="text-2xl font-bold text-gray-800 mb-4">Edit Medical Conditions</h2>
+            <div className="flex flex-col space-y-2">
+              {conditions.map((condition, index) => (
+                <label key={condition.id || index} className="flex items-center space-x-2 text-gray-800">
+                  <input
+                    type="checkbox"
+                    checked={selectedConditions.includes(condition.name)}
+                    onChange={() => toggleCondition(condition.name)}
+                  />
+                  <span>{condition.name}</span>
+                </label>
+              ))}
+
+            </div>
+            <button onClick={handleSaveConditions} className="mt-4 bg-[#FF8C00] text-white px-4 py-2 rounded-lg">Save</button>
+          </div>
+        </div>
+      )}
+
       {showModal && (
         <div className="fixed inset-0 bg-gray-400/[.8] flex items-center justify-center">
           <div className="bg-white p-6 rounded-lg shadow-lg w-1/3">
