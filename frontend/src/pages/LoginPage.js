@@ -1,10 +1,21 @@
-"use client";
-import { useState } from "react";
+'use client';
+
+import { useState, useEffect } from "react";
 import axios from "axios";
+import { useRouter } from "next/navigation";
 
 export default function HomePage() {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
+    const router = useRouter();
+
+    useEffect(() => {
+        const userId = sessionStorage.getItem("userId");
+        if (userId) {
+          // If user is logged in, redirect to profile-view
+          router.push("/profile-view");
+        }
+      }, [router]);
 
     const handleLogin = async () => {
         try {
@@ -18,7 +29,9 @@ export default function HomePage() {
                 }
             );
             if (response.status === 200) {
-                alert("Login successful!");
+                // Store user.id in sessionStorage
+                sessionStorage.setItem("userId", response.data.user.id);
+                window.location.href = "/profile-view";
             }
         } catch (error) {
             alert(`Login failed: ${error.response?.data?.message || error.message}`);
@@ -30,7 +43,7 @@ export default function HomePage() {
             <div className="w-80">
                 {/* Username Input */}
                 <div className="relative w-full mb-12">
-                    <p className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#FF8C00] text-white px-4 py-2 rounded-lg text-center shadow-md">
+                    <p className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#FF8C00] text-white px-31 py-2 rounded-lg text-center shadow-md">
                         Username
                     </p>
                     <input
@@ -44,7 +57,7 @@ export default function HomePage() {
 
                 {/* Password Input */}
                 <div className="relative w-full mb-6">
-                    <p className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#FF8C00] text-white px-4 py-2 rounded-lg text-center shadow-md">
+                    <p className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#FF8C00] text-white px-31.5 py-2 rounded-lg text-center shadow-md">
                         Password
                     </p>
                     <input
