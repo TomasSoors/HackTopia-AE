@@ -1,3 +1,5 @@
+'use client'
+
 import { useState } from "react";
 import axios from "axios";
 
@@ -29,7 +31,7 @@ export default function HomePage() {
             <div className="w-80">
                 {/* Username Input */}
                 <div className="relative w-full mb-12">
-                    <p className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#FF8C00] text-white px-4 py-2 rounded-lg text-center shadow-md">
+                    <p className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#FF8C00] text-white px-31 py-2 rounded-lg text-center shadow-md">
                         Username
                     </p>
                     <input
@@ -43,7 +45,7 @@ export default function HomePage() {
 
                 {/* Password Input */}
                 <div className="relative w-full mb-6">
-                    <p className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#FF8C00] text-white px-4 py-2 rounded-lg text-center shadow-md">
+                    <p className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#FF8C00] text-white px-31.5 py-2 rounded-lg text-center shadow-md">
                         Password
                     </p>
                     <input
