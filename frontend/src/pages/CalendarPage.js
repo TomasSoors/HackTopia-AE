@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 
 const CalendarPage = () => {
   const [appointments, setAppointments] = useState([]);
-  const doctorId = "550e8400-e29b-41d4-a716-446655440000"; // ✅ Simulatie ingelogde dokter
+  const doctorId = "550e8400-e29b-41d4-a716-446655440001"; // ✅ Simulatie ingelogde dokter
 
   useEffect(() => {
     const fetchAppointments = async () => {
