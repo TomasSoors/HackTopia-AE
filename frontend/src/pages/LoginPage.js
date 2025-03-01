@@ -1,11 +1,21 @@
 'use client';
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
+import { useRouter } from "next/navigation";
 
 export default function HomePage() {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
+    const router = useRouter();
+
+    useEffect(() => {
+        const userId = sessionStorage.getItem("userId");
+        if (userId) {
+          // If user is logged in, redirect to profile-view
+          router.push("/profile-view");
+        }
+      }, [router]);
 
     const handleLogin = async () => {
         try {
