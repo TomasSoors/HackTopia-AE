@@ -1,10 +1,18 @@
-"use client";
+'use client';
 
 import { usePathname, useRouter } from "next/navigation";
 
 const Header = () => {
   const router = useRouter();
   const pathname = usePathname();
+
+  // Check if there is a userId in sessionStorage
+  const userId = sessionStorage.getItem("userId");
+
+  // If no userId is found, return null to render nothing
+  if (!userId) {
+    return null;
+  }
 
   const navItems = [
     { name: "Patient View", path: "/patient-view" },

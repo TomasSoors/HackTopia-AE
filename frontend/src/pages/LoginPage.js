@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import { useState } from "react";
 import axios from "axios";
@@ -19,7 +19,9 @@ export default function HomePage() {
                 }
             );
             if (response.status === 200) {
-                alert("Login successful!");
+                // Store user.id in sessionStorage
+                sessionStorage.setItem("userId", response.data.user.id);
+                window.location.href = "/profile-view";
             }
         } catch (error) {
             alert(`Login failed: ${error.response?.data?.message || error.message}`);
