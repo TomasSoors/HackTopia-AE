@@ -153,15 +153,21 @@ const PatientPage = () => {
           {loading && <p className="text-gray-500">Loading patients...</p>}
           {error && <p className="text-red-500">{error}</p>}
           <ul className="space-y-2">
-            {patients.map((patient) => (
-              <li
-                key={patient.id}
-                className={`cursor-pointer px-4 py-3 rounded-md transition ${selectedPatient?.id === patient.id ? "bg-[#FF8C00] text-gray-800 font-bold" : "bg-gray-200 hover:bg-[#FF8C00] text-gray-800"}`}
-                onClick={() => setSelectedPatient(patient)}
-              >
-                {patient.firstName} {patient.lastName}
-              </li>
-            ))}
+            {patients
+              .filter((patient) => patient.id != doctorId) // Filter patiënten die geen medische beoefenaars zijn
+              .map((patient) => (
+                <li
+                  key={patient.id}
+                  className={`cursor-pointer px-4 py-3 rounded-md transition ${selectedPatient?.id === patient.id
+                      ? "bg-[#FF8C00] text-gray-800 font-bold"
+                      : "bg-gray-200 hover:bg-[#FF8C00] text-gray-800"
+                    }`}
+                  onClick={() => setSelectedPatient(patient)}
+                >
+                  {patient.firstName} {patient.lastName}
+                </li>
+              ))}
+
           </ul>
         </aside>
 

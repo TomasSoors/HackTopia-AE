@@ -47,7 +47,7 @@ const Header = () => {
 
   const navItems = [
     { name: "Patient View", path: "/patient-view" },
-    { name: "Calendar", path: "/calendar" },
+    { name: "Calendar", path: "/calender" },
     { name: "Profile", path: "/profile-view" },
     { name: "Logout", path: "/logout", onClick: handleLogout }
   ];
@@ -62,7 +62,7 @@ const Header = () => {
         <div className="container mx-auto px-6 py-4 flex justify-between items-center">
           <div className="flex items-center space-x-3">
             <Image src="https://cdn-icons-png.flaticon.com/512/3774/3774299.png" alt="Logo" width={30} height={30} />
-            <h1 className="text-xl font-bold text-white">MyHealth</h1>
+            <h1 className="text-xl font-bold text-white">De Toeristen</h1>
           </div>
           <nav className="flex space-x-6">
             {filteredNavItems.map((item) => (

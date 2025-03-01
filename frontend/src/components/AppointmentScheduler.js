@@ -14,26 +14,26 @@ const AppointmentScheduler = ({ patientId, onAppointmentBooked }) => {
     const fetchDoctors = async () => {
       const response = await fetch("http://localhost:5000/person/all");
       const data = await response.json();
-      setDoctors(data.filter((d) => d.isMedicalPractitioner));
+      setDoctors(data.filter((d) => d.isMedicalPractitioner && d.id !== patientId));
     };
     fetchDoctors();
-  }, []);
+  }, [patientId]);
 
   // Fetch available slots
   useEffect(() => {
     if (!selectedDoctor || !date) return;
-  
+
     const fetchAvailableSlots = async () => {
       const response = await fetch(`http://localhost:5000/appointments/generate-slots`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ doctorId: selectedDoctor, date }),
       });
-  
+
       const data = await response.json();
-      setAvailableSlots(data.map(slot => new Date(slot))); // Convert to Date objects
+      setAvailableSlots(data.map((slot) => new Date(slot))); // Convert to Date objects
     };
-  
+
     fetchAvailableSlots();
   }, [selectedDoctor, date]);
 
@@ -68,15 +68,14 @@ const AppointmentScheduler = ({ patientId, onAppointmentBooked }) => {
 
   return (
     <div className="mx-auto p-6 bg-white shadow-xl rounded-xl border border-gray-200">
-      <h2 className="text-2xl font-semibold mb-5 text-gray-800">Plan een afspraak</h2>
 
       {/* Select Doctor */}
-      <label className="block text-sm font-medium text-gray-700">Kies een dokter</label>
+      <label className="block text-sm font-medium text-gray-700">Choose a doctor</label>
       <select
         onChange={(e) => setSelectedDoctor(e.target.value)}
         className="w-full p-3 mt-1 border rounded-lg bg-gray-50 focus:ring-2 focus:ring-blue-400 focus:outline-none"
       >
-        <option value="">Selecteer een dokter</option>
+        <option value="">Select a doctor</option>
         {doctors.map((doctor) => (
           <option key={doctor.id} value={doctor.id}>
             {doctor.firstName} {doctor.lastName}
@@ -85,7 +84,7 @@ const AppointmentScheduler = ({ patientId, onAppointmentBooked }) => {
       </select>
 
       {/* Select Date */}
-      <label className="block text-sm font-medium text-gray-700 mt-4">Kies een datum</label>
+      <label className="block text-sm font-medium text-gray-700 mt-4">Choose a date</label>
       <input
         type="date"
         value={date}
@@ -94,12 +93,12 @@ const AppointmentScheduler = ({ patientId, onAppointmentBooked }) => {
       />
 
       {/* Select Time Slot */}
-      <label className="block text-sm font-medium text-gray-700 mt-4">Kies een tijdslot</label>
+      <label className="block text-sm font-medium text-gray-700 mt-4">Choose a timeslot</label>
       <select
         onChange={(e) => setSelectedSlot(e.target.value)}
         className="w-full p-3 mt-1 border rounded-lg bg-gray-50 focus:ring-2 focus:ring-blue-400 focus:outline-none"
       >
-        <option value="">Selecteer een tijdslot</option>
+        <option value="">Select a timeslot</option>
         {availableSlots.map((slot) => (
           <option key={slot} value={slot}>
             {new Date(slot).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}
@@ -108,7 +107,7 @@ const AppointmentScheduler = ({ patientId, onAppointmentBooked }) => {
       </select>
 
       {/* Reason Input */}
-      <label className="block text-sm font-medium text-gray-700 mt-4">Reden voor afspraak</label>
+      <label className="block text-sm font-medium text-gray-700 mt-4">Reason for appointment</label>
       <textarea
         className="w-full p-3 mt-1 border rounded-lg bg-gray-50 focus:ring-2 focus:ring-blue-400 focus:outline-none"
         placeholder="Vul de reden in..."
@@ -121,7 +120,7 @@ const AppointmentScheduler = ({ patientId, onAppointmentBooked }) => {
         onClick={handleBookAppointment}
         className="w-full mt-5 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-lg transition duration-200"
       >
-        Boek Afspraak
+        Book Appointment
       </button>
     </div>
   );

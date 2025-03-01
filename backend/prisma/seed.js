@@ -19,6 +19,7 @@ const diseases = [
 const persons = [
   { id: "550e8400-e29b-41d4-a716-446655440000", username: "johndoe92", password: "password123", firstName: "John", lastName: "Doe", dateOfBirth: new Date("1992-06-15"), heartRate: 72, bloodPressure: "120/80", breathRate: 16, temperature: 98.6, bloodType: "O+", occupation: "Doctor", weight: 180, height: 5.9, gender: "Male", isMedicalPractitioner: true },
   { id: "a12f8900-c53d-11ec-9d64-0242ac120002", username: "janesmith85", password: "securepass456", firstName: "Jane", lastName: "Smith", dateOfBirth: new Date("1985-09-22"), heartRate: 68, bloodPressure: "115/75", breathRate: 18, temperature: 98.2, bloodType: "A-", occupation: "Engineer", weight: 140, height: 5.6, gender: "Female", isMedicalPractitioner: false },
+  { id: "550e8400-e29b-41d4-a716-446655440001", username: "wim", password: "password123", firstName: "Wim", lastName: "Schrooten", dateOfBirth: new Date("1992-06-15"), heartRate: 72, bloodPressure: "120/80", breathRate: 16, temperature: 98.6, bloodType: "O+", occupation: "Doctor", weight: 180, height: 5.9, gender: "Male", isMedicalPractitioner: true },
   { id: "f47ac10b-58cc-4372-a567-0e02b2c3d479", username: "bobby88", password: "myp@ssw0rd!", firstName: "Bobby", lastName: "Fischer", dateOfBirth: new Date("1988-11-10"), heartRate: 75, bloodPressure: "122/82", breathRate: 14, temperature: 98.9, bloodType: "B+", occupation: "Chess Player", weight: 155, height: 5.8, gender: "Male", isMedicalPractitioner: false }
 ];
 
