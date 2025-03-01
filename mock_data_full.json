@@ -1,0 +1,355 @@
+{
+    "Persons": [
+        {
+            "Username": "johndoe92",
+            "Password": "password123",
+            "GUID": "550e8400-e29b-41d4-a716-446655440000",
+            "FirstName": "John",
+            "LastName": "Doe",
+            "DateOfBirth": "1992-06-15",
+            "Disease": [
+                "D001",
+                "D005"
+            ],
+            "HeartRate": 72,
+            "BloodPressure": "120/80",
+            "BreathRate": 16,
+            "Temperature": 98.6,
+            "BloodType": "O+",
+            "Occupation": "Doctor",
+            "Weight": 180,
+            "Height": 5.9,
+            "Gender": "Male",
+            "IsMedicalPractioner": true
+        },
+        {
+            "Username": "janesmith85",
+            "Password": "securepass456",
+            "GUID": "a12f8900-c53d-11ec-9d64-0242ac120002",
+            "FirstName": "Jane",
+            "LastName": "Smith",
+            "DateOfBirth": "1985-09-22",
+            "Disease": [
+                "D002"
+            ],
+            "HeartRate": 68,
+            "BloodPressure": "115/75",
+            "BreathRate": 18,
+            "Temperature": 98.2,
+            "BloodType": "A-",
+            "Occupation": "Engineer",
+            "Weight": 140,
+            "Height": 5.6,
+            "Gender": "Female",
+            "IsMedicalPractioner": false
+        },
+        {
+            "Username": "bobby88",
+            "Password": "myp@ssw0rd!",
+            "GUID": "f47ac10b-58cc-4372-a567-0e02b2c3d479",
+            "FirstName": "Bobby",
+            "LastName": "Fischer",
+            "DateOfBirth": "1988-11-10",
+            "Disease": [],
+            "HeartRate": 75,
+            "BloodPressure": "122/82",
+            "BreathRate": 14,
+            "Temperature": 98.9,
+            "BloodType": "B+",
+            "Occupation": "Chess Player",
+            "Weight": 155,
+            "Height": 5.8,
+            "Gender": "Male",
+            "IsMedicalPractioner": false
+        },
+        {
+            "Username": "alicew",
+            "Password": "wonderland42",
+            "GUID": "c0a80101-02b3-4d9a-9916-0b37b712efef",
+            "FirstName": "Alice",
+            "LastName": "Williams",
+            "DateOfBirth": "1995-04-03",
+            "Disease": [
+                "D004"
+            ],
+            "HeartRate": 80,
+            "BloodPressure": "130/85",
+            "BreathRate": 20,
+            "Temperature": 99.1,
+            "BloodType": "AB+",
+            "Occupation": "Nurse",
+            "Weight": 160,
+            "Height": 5.7,
+            "Gender": "Female",
+            "IsMedicalPractioner": true
+        },
+        {
+            "Username": "michaelj",
+            "Password": "m!chaelJ2023",
+            "GUID": "ad33ff00-27b5-11ee-be56-0242ac120002",
+            "FirstName": "Michael",
+            "LastName": "Johnson",
+            "DateOfBirth": "1990-08-12",
+            "Disease": [
+                "D003"
+            ],
+            "HeartRate": 70,
+            "BloodPressure": "118/78",
+            "BreathRate": 17,
+            "Temperature": 98.5,
+            "BloodType": "O-",
+            "Occupation": "Teacher",
+            "Weight": 170,
+            "Height": 6.0,
+            "Gender": "Male",
+            "IsMedicalPractioner": false
+        },
+        {
+            "Username": "sarahl99",
+            "Password": "sarahL*secure",
+            "GUID": "bc48ac10-b67a-44cd-b5c4-9d6f72e907b5",
+            "FirstName": "Sarah",
+            "LastName": "Lewis",
+            "DateOfBirth": "1999-02-27",
+            "Disease": [
+                "D005"
+            ],
+            "HeartRate": 85,
+            "BloodPressure": "135/88",
+            "BreathRate": 19,
+            "Temperature": 99.3,
+            "BloodType": "A+",
+            "Occupation": "Student",
+            "Weight": 130,
+            "Height": 5.5,
+            "Gender": "Female",
+            "IsMedicalPractioner": false
+        },
+        {
+            "Username": "robertc84",
+            "Password": "robert_2024",
+            "GUID": "d33b4f12-48c3-459c-bc7c-734e8c08dd3e",
+            "FirstName": "Robert",
+            "LastName": "Clark",
+            "DateOfBirth": "1984-06-30",
+            "Disease": [
+                "D006"
+            ],
+            "HeartRate": 78,
+            "BloodPressure": "125/83",
+            "BreathRate": 16,
+            "Temperature": 98.4,
+            "BloodType": "B-",
+            "Occupation": "Lawyer",
+            "Weight": 190,
+            "Height": 6.1,
+            "Gender": "Male",
+            "IsMedicalPractioner": false
+        },
+        {
+            "Username": "emilyr76",
+            "Password": "Emily2023!pass",
+            "GUID": "e89f1f23-d6cf-42b5-9f96-7b6f61d3c7d5",
+            "FirstName": "Emily",
+            "LastName": "Rodriguez",
+            "DateOfBirth": "1976-11-19",
+            "Disease": [
+                "D007"
+            ],
+            "HeartRate": 82,
+            "BloodPressure": "140/90",
+            "BreathRate": 18,
+            "Temperature": 99.0,
+            "BloodType": "AB-",
+            "Occupation": "Surgeon",
+            "Weight": 145,
+            "Height": 5.7,
+            "Gender": "Female",
+            "IsMedicalPractioner": true
+        },
+        {
+            "Username": "davidh77",
+            "Password": "DavidH@secure",
+            "GUID": "fc7d492e-3c8e-40b6-bcb5-8f914fa6a4c6",
+            "FirstName": "David",
+            "LastName": "Harris",
+            "DateOfBirth": "1977-05-09",
+            "Disease": [
+                "D008"
+            ],
+            "HeartRate": 76,
+            "BloodPressure": "128/85",
+            "BreathRate": 15,
+            "Temperature": 98.7,
+            "BloodType": "O+",
+            "Occupation": "Pilot",
+            "Weight": 180,
+            "Height": 5.11,
+            "Gender": "Male",
+            "IsMedicalPractioner": false
+        },
+        {
+            "Username": "laurab92",
+            "Password": "LauraB!secure1",
+            "GUID": "01234abc-de56-789f-0g12-34567hijk890",
+            "FirstName": "Laura",
+            "LastName": "Brown",
+            "DateOfBirth": "1992-09-14",
+            "Disease": [
+                "D009"
+            ],
+            "HeartRate": 74,
+            "BloodPressure": "110/70",
+            "BreathRate": 16,
+            "Temperature": 98.3,
+            "BloodType": "A-",
+            "Occupation": "Pharmacist",
+            "Weight": 135,
+            "Height": 5.6,
+            "Gender": "Female",
+            "IsMedicalPractioner": true
+        }
+    ],
+    "Diseases": [
+        {
+            "ID": "D001",
+            "Name": "Influenza",
+            "Symptoms": [
+                "Fever",
+                "Cough",
+                "Fatigue"
+            ],
+            "Type": "Viral",
+            "Infectuous": true,
+            "IsAcute": true,
+            "Duration": "7 days",
+            "IncubationPeriod": "1-4 days"
+        },
+        {
+            "ID": "D002",
+            "Name": "Hypertension",
+            "Symptoms": [
+                "Headache",
+                "Dizziness",
+                "Blurred Vision"
+            ],
+            "Type": "Chronic",
+            "Infectuous": false,
+            "IsAcute": false,
+            "Duration": "Lifelong",
+            "IncubationPeriod": "N/A"
+        },
+        {
+            "ID": "D003",
+            "Name": "Diabetes Type 2",
+            "Symptoms": [
+                "Increased Thirst",
+                "Frequent Urination",
+                "Fatigue"
+            ],
+            "Type": "Metabolic",
+            "Infectuous": false,
+            "IsAcute": false,
+            "Duration": "Lifelong",
+            "IncubationPeriod": "Years"
+        },
+        {
+            "ID": "D004",
+            "Name": "Pneumonia",
+            "Symptoms": [
+                "Cough",
+                "Shortness of Breath",
+                "Chest Pain"
+            ],
+            "Type": "Bacterial/Viral",
+            "Infectuous": true,
+            "IsAcute": true,
+            "Duration": "2-3 weeks",
+            "IncubationPeriod": "1-10 days"
+        },
+        {
+            "ID": "D005",
+            "Name": "Asthma",
+            "Symptoms": [
+                "Wheezing",
+                "Shortness of Breath",
+                "Cough"
+            ],
+            "Type": "Respiratory",
+            "Infectuous": false,
+            "IsAcute": false,
+            "Duration": "Variable",
+            "IncubationPeriod": "N/A"
+        },
+        {
+            "ID": "D006",
+            "Name": "Tuberculosis",
+            "Symptoms": [
+                "Persistent Cough",
+                "Fever",
+                "Weight Loss"
+            ],
+            "Type": "Bacterial",
+            "Infectuous": true,
+            "IsAcute": false,
+            "Duration": "Months to Years",
+            "IncubationPeriod": "2-12 weeks"
+        },
+        {
+            "ID": "D007",
+            "Name": "COVID-19",
+            "Symptoms": [
+                "Fever",
+                "Cough",
+                "Loss of Taste"
+            ],
+            "Type": "Viral",
+            "Infectuous": true,
+            "IsAcute": true,
+            "Duration": "2-4 weeks",
+            "IncubationPeriod": "2-14 days"
+        },
+        {
+            "ID": "D008",
+            "Name": "Migraine",
+            "Symptoms": [
+                "Severe Headache",
+                "Nausea",
+                "Sensitivity to Light"
+            ],
+            "Type": "Neurological",
+            "Infectuous": false,
+            "IsAcute": true,
+            "Duration": "Hours to Days",
+            "IncubationPeriod": "N/A"
+        },
+        {
+            "ID": "D009",
+            "Name": "Anemia",
+            "Symptoms": [
+                "Fatigue",
+                "Pale Skin",
+                "Shortness of Breath"
+            ],
+            "Type": "Blood Disorder",
+            "Infectuous": false,
+            "IsAcute": false,
+            "Duration": "Variable",
+            "IncubationPeriod": "N/A"
+        },
+        {
+            "ID": "D010",
+            "Name": "Chickenpox",
+            "Symptoms": [
+                "Itchy Rash",
+                "Fever",
+                "Fatigue"
+            ],
+            "Type": "Viral",
+            "Infectuous": true,
+            "IsAcute": true,
+            "Duration": "10-14 days",
+            "IncubationPeriod": "10-21 days"
+        }
+    ]
+}
