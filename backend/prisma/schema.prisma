@@ -1,11 +1,53 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
 
 datasource db {
-  provider = "sqlite"
+  provider = "mysql"
   url      = env("DATABASE_URL")
+}
+
+model Person {
+  id                  String    @id @default(uuid())
+  username            String    @unique
+  password            String
+  firstName           String
+  lastName            String
+  dateOfBirth         DateTime
+  heartRate           Int
+  bloodPressure       String
+  breathRate          Int
+  temperature         Float
+  bloodType           String
+  occupation          String
+  weight              Float
+  height              Float
+  gender              String
+  isMedicalPractitioner Boolean
+
+  diseases            PersonDisease[] // Relatie via tussenmodel
+}
+
+model Disease {
+  id                 String   @id
+  name               String
+  symptoms           String
+  type               String
+  infectious         Boolean
+  isAcute            Boolean
+  duration           Int
+  incubationPeriod   Int
+
+  persons            PersonDisease[] // Relatie via tussenmodel
+}
+
+// **Tussenmodel voor many-to-many relatie**
+model PersonDisease {
+  personId  String
+  diseaseId String
+
+  person   Person   @relation(fields: [personId], references: [id], onDelete: Cascade)
+  disease  Disease  @relation(fields: [diseaseId], references: [id], onDelete: Cascade)
+
+  @@id([personId, diseaseId]) // Composite primary key
 }
